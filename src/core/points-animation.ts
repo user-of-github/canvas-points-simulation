@@ -1,23 +1,21 @@
 import { Config } from './config';
-import { CanvasRenderer } from './renderer';
-import { Dimension, type Physics } from './pure-javascipt/types';
+import { Dimension, Renderer, type Physics } from './types';
 
 export class PointsAnimation {
-    private readonly canvasElement = document.getElementById(Config.canvasElementId) as HTMLCanvasElement;
-    private readonly pointsCountInput = document.getElementById(Config.pointsCountInputId) as HTMLInputElement;
-    private readonly fpsOutput = document.getElementById(Config.fpsOutputBlockId) as HTMLElement;
-    private readonly pointsSizeChangeInput = document.getElementById(Config.pointsSizeInput) as HTMLInputElement;
-
-    private readonly physics: Physics;
-    private readonly renderer: CanvasRenderer;
+    
 
     private pointsCount: number = 0;
     private canvasSize: Dimension = { width: 0, height: 0};
 
-    public constructor(physicsEngine: Physics) {
+    public constructor(
+        private readonly physics: Physics, 
+        private readonly renderer: Renderer,
+        private readonly canvasElement: HTMLCanvasElement,
+        private readonly pointsCountInput: HTMLInputElement,
+        private readonly fpsOutput: HTMLElement,
+        private readonly pointsSizeChangeInput: HTMLInputElement
+    ) {
         this.validateHTML();
-        this.physics = physicsEngine;
-        this.renderer = new CanvasRenderer(this.canvasElement);
     }
 
     public startListening(): void {

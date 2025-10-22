@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style.css">
-    <title>JavaScript points rendering</title>
+    <title>WASM & WebGL points rendering</title>
 </head>
 <body>
     <main class="container">
         <canvas id="app-canvas" class="app-canvas" width="800px" height="800px"></canvas>
 
         <div class="info-block">
-            <h1>Pure JS points rendering</h1>
+            <h1>WASM & WebGL points rendering</h1>
            <div class="input-group">
             <label for="app-points-count-input">Points count</label>
              <input 
                 id="app-points-count-input" 
-                value="4000" 
+                value="2000" 
                 class="app-points-count-input"
                 max="200000"
                 min="20"
@@ -31,7 +31,7 @@
             <span class="app-fps-output" id="app-fps-output"></span>
         </div>
     </main>
-    <script type="module" src="../run-js.ts">
+    <script type="module" src="../core/webgl/renderer.ts">
     </script>
 </body>
 </html>
