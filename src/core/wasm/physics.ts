@@ -1,27 +1,34 @@
 import { Coordinate, Physics } from '../types';
 
+
+type WasmExportsStructure = Omit<Physics, 'run'> & {
+    mem: WebAssembly.Memory;
+    run: (x: number, y: number) => void;
+}
+
 export class WebAssemblyPhysics implements Physics {
     private points: Float32Array = new Float32Array();
+    private readonly wasmExports: WasmExportsStructure;
 
-    public constructor(private readonly wasmInstance: WebAssembly.Instance) {
-
+    public constructor(wasmInstance: WebAssembly.Instance) {
+        this.wasmExports = wasmInstance.exports as unknown as WasmExportsStructure;
     }
 
     public run(coordinate: Coordinate): void {
-        return this.wasmInstance.exports.run(coordinate.x, coordinate.y);
+        return this.wasmExports.run(coordinate.x, coordinate.y);
     }
 
 
     public tick(pointsCount: number): void {
-        return this.wasmInstance.exports.tick(pointsCount);
+        return this.wasmExports.tick(pointsCount);
     };
 
 
     public get data(): Readonly<Float32Array<ArrayBufferLike>> {
-        const wasmExports = this.wasmInstance.exports;
+        const wasmBuffer = this.wasmExports.mem.buffer;
 
-        if (wasmExports.mem.buffer !== this.points.buffer) {
-            this.points = new Float32Array(wasmExports.mem.buffer);
+        if (wasmBuffer !== this.points.buffer) {
+            this.points = new Float32Array(wasmBuffer);
         }
 
         return this.points;

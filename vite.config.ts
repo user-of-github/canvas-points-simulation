@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite';
 import path from 'node:path';
 import glsl from 'vite-plugin-glsl';
-import wasm from 'vite-plugin-wasm';
 
 
 export default defineConfig({
