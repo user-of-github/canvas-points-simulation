@@ -14,7 +14,6 @@ async function main() {
 
     const instance: WebAssembly.Instance = await wasmModuleInit({
              Math: {
-                //@ts-ignore
                 random: (): number => Math.random(),
                 sin: (x: number): number => Math.sin(x),
                 cos: (x: number): number => Math.cos(x)
@@ -22,9 +21,8 @@ async function main() {
     });
 
     const physicsJavaScriptEngine = new WebAssemblyPhysics(instance);
-     const webglCanvasRenderer = new WebGLCanvasRenderer(canvasElement);
+    const webglCanvasRenderer = new WebGLCanvasRenderer(canvasElement);
 
-    
 
     const pointsAnimation = new PointsAnimation(
         physicsJavaScriptEngine,

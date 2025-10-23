@@ -11,7 +11,7 @@ export class WebGLCanvasRenderer implements Renderer {
 
     public constructor(private readonly canvasRef: HTMLCanvasElement) {
         const ctx = this.canvasRef.getContext('webgl2', { alpha: false, antialias: false }) ||
-            this.canvasRef.getContext('webgl', { alpha: false, antialias: false });
+                    this.canvasRef.getContext('webgl', { alpha: false, antialias: false });
 
         if (!ctx) {
             console.error('[App]: Can not get context from canvas ', canvasRef);

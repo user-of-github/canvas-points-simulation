@@ -1,4 +1,4 @@
-import { resizeF32Array } from '../../utils';
+import { resizeF32Array } from './utils';
 import { Coordinate, Physics } from '../types';
 
 
