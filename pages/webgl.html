@@ -1,0 +1,21 @@
+<!DOCTYPE html><html lang=en><meta charset=UTF-8><meta name=viewport content="width=device-width, initial-scale=1.0"><link rel=stylesheet href=/canvas-points-simulation/javascript.9baf1701.css><title>WASM &amp; WebGL points rendering</title><body>
+    <main class=container>
+        <canvas id=app-canvas class=app-canvas width=800px height=800px></canvas>
+
+        <div class=info-block>
+            <h1>WASM &amp; WebGL points rendering</h1>
+           <div class=input-group>
+            <label for=app-points-count-input>Points count</label>
+             <input id=app-points-count-input value=2000 class=app-points-count-input max=200000 min=20 maxlength=7>
+           </div>
+
+           <div class=input-group>
+                <label for=app-point-size-inpute>Point size:</label>
+                <input type=range id=app-point-size-input name=app-point-size-input min=2 max=50 value=3>
+           </div>
+            <span class=app-fps-output id=app-fps-output></span>
+        </div>
+    </main>
+    <script type=module src=/canvas-points-simulation/webgl.8ded356e.js>
+    </script>
+
