@@ -3,35 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style.css">
-    <title>JavaScript points rendering</title>
+    <link rel="stylesheet" href="../../style.css">
+    <title>WASM Physics, JS Render</title>
 </head>
 <body>
     <main class="container">
         <canvas id="app-canvas" class="app-canvas" width="800px" height="800px"></canvas>
 
         <div class="info-block">
-            <h1>Pure JS points rendering</h1>
+            <h1>WASM physics + WebGL Render</h1>
            <div class="input-group">
             <label for="app-points-count-input">Points count</label>
              <input 
                 id="app-points-count-input" 
-                value="4000" 
+                value="1500000" 
                 class="app-points-count-input"
                 max="200000"
                 min="20"
-                maxlength="6"
+                maxlength="7"
                 />
            </div>
 
            <div class="input-group">
                 <label for="app-point-size-inpute">Point size:</label>
-                <input type="range" id="app-point-size-input" name="app-point-size-input" min="2" max="50" value="3" />
+                <input type="range" id="app-point-size-input" name="app-point-size-input" min="1" max="50" value="1" />
            </div>
             <span class="app-fps-output" id="app-fps-output"></span>
         </div>
     </main>
-    <script type="module" src="../run-js.ts">
+    <script type="module" src="./run-wasm-webgl.ts">
     </script>
 </body>
 </html>

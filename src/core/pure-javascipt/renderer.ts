@@ -4,6 +4,7 @@ import { type Renderer, type Dimension } from '../types';
 export class JavascriptCanvasRenderer implements Renderer {
     private pointSize = 3;
     private readonly context: CanvasRenderingContext2D;
+
     public constructor(private readonly canvasRef: HTMLCanvasElement) {
         const ctx = canvasRef.getContext('2d');
 
@@ -15,24 +16,10 @@ export class JavascriptCanvasRenderer implements Renderer {
         this.context = ctx;
     }
 
-    public async init(): Promise<void> {
-
-    }
-
-    private fixCanvasSizeIfNecessary({ width, height }: Dimension) {
-        if (width !== this.canvasRef.width || height !== this.canvasRef.height) {
-            this.canvasRef.width = width;
-            this.canvasRef.height = height;
-            //this.context.translate(width, height);
-            this.context.fillStyle = 'white';
-        }
-    }
 
     public render(data: Float32Array, pointsAmount: number, size: Dimension): void {
         this.context.fillStyle = 'white';
         this.context.strokeStyle = 'white';
-
-        this.fixCanvasSizeIfNecessary(size);
 
         this.context.clearRect(
             0,

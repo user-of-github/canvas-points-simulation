@@ -1,15 +1,15 @@
 import { Config } from './config';
-import { Dimension, Renderer, type Physics } from './types';
+import { CanvasRenderingType, Coordinate, Dimension, Renderer, type Physics } from './types';
+
 
 export class PointsAnimation {
-    
-
     private pointsCount: number = 0;
-    private canvasSize: Dimension = { width: 0, height: 0};
+    private canvasSize: Dimension = { width: 0, height: 0 };
 
     public constructor(
-        private readonly physics: Physics, 
+        private readonly physics: Physics,
         private readonly renderer: Renderer,
+        private readonly renderingtType: CanvasRenderingType,
         private readonly canvasElement: HTMLCanvasElement,
         private readonly pointsCountInput: HTMLInputElement,
         private readonly fpsOutput: HTMLElement,
@@ -41,47 +41,69 @@ export class PointsAnimation {
     }
 
     public setupHandlers(): void {
-        window.addEventListener('resize', this.handleWindowResize);
-        this.handleWindowResize(); // initial assigment
+        this.canvasElement.width = this.canvasElement.clientWidth;
+        this.canvasElement.height = this.canvasElement.clientHeight;
+         this.canvasSize = {
+            width: this.canvasElement.clientWidth,
+            height: this.canvasElement.clientHeight
+        };
 
         this.pointsCountInput.addEventListener('input', this.handleInput);
         this.handleInput(); // initial assigment
-        
+
         this.canvasElement.addEventListener('click', this.handleClick);
 
-        this.pointsSizeChangeInput.addEventListener('input', this.handlePointSizeChange)
+        this.pointsSizeChangeInput.addEventListener('input', this.handlePointSizeChange);
+        this.handlePointSizeChange();
     }
 
-    private readonly handlePointSizeChange = (event: Event): void => {
-        this.renderer.setPointSize(Number((event.currentTarget as HTMLInputElement ).value))
+    private readonly handlePointSizeChange = (): void => {
+        this.renderer.setPointSize(Number(this.pointsSizeChangeInput.value))
     }
-
-    private readonly handleWindowResize = () => {
-        this.canvasElement.width = this.canvasElement.clientWidth;
-        this.canvasElement.height = this.canvasElement.clientHeight;
-
-        this.canvasSize = {
-            width: this.canvasElement.clientWidth, 
-            height: this.canvasElement.clientHeight
-        };
-    };
 
     private readonly handleInput = () => {
         const parsed = Number(this.pointsCountInput.value);
-        
-        if (parsed > 1) {
+
+        if (parsed >= 1) {
             this.pointsCount = parsed;
         }
     }
 
     private readonly handleClick = (event: MouseEvent) => {
-        debugger;
-        const rect = this.canvasElement.getBoundingClientRect(); // Положение канваса
-        const x = event.clientX - rect.left;  // Координата X клика относительно канваса
-        const y = event.clientY - rect.top; 
+        const clickCoordinate: Coordinate = this.renderingtType === CanvasRenderingType.Usual
+            ? this.getClickCoordinatesForUsualCanvas(event)
+            : this.getClickCoordinatesForWebGLCanvas(event);
 
-        this.physics.run(x,y)
+        this.physics.run(clickCoordinate);
     };
+
+    private getClickCoordinatesForUsualCanvas(event: MouseEvent): Coordinate {
+        const rect = this.canvasElement.getBoundingClientRect();
+
+        return {
+            x: event.clientX - rect.left,
+            y: event.clientY - rect.top
+        };
+    }
+
+    private getClickCoordinatesForWebGLCanvas(event: MouseEvent): Coordinate {
+         const rect = this.canvasElement.getBoundingClientRect();
+
+    // Координаты клика в пикселях относительно canvas
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    // Преобразуем в координаты относительно ЦЕНТРА canvas
+    const centerX = x - this.canvasElement.clientWidth / 2;
+    const centerY = y - this.canvasElement.clientHeight / 2;
+
+    console.log('Click in pixels from center:', centerX, centerY);
+    
+    return { 
+        x: centerX, 
+        y: centerY 
+    };
+    }
 
     private validateHTML() {
         if (!this.canvasElement || !(this.canvasElement instanceof HTMLCanvasElement)) {

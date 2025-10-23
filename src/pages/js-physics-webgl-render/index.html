@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../style.css">
+    <title>JS Physics, WebGL Render</title>
+</head>
+<body>
+    <main class="container">
+        <canvas id="app-canvas" class="app-canvas" width="800px" height="800px"></canvas>
+
+        <div class="info-block">
+            <h1>JS Physics + WebGL Render</h1>
+           <div class="input-group">
+            <label for="app-points-count-input">Points count</label>
+             <input 
+                id="app-points-count-input" 
+                value="1300000" 
+                class="app-points-count-input"
+                max="200000"
+                min="20"
+                maxlength="7"
+                />
+           </div>
+
+           <div class="input-group">
+                <label for="app-point-size-inpute">Point size:</label>
+                <input type="range" id="app-point-size-input" name="app-point-size-input" min="1" max="50" value="1" />
+           </div>
+            <span class="app-fps-output" id="app-fps-output"></span>
+        </div>
+    </main>
+    <script type="module" src="./run-webgl.ts">
+    </script>
+</body>
+</html>

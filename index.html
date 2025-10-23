@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebGL Performance Comparison</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/index.css"/>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Points Simulation performance comparison</h1>
+      <p class="subtitle"></p>
+
+      <div class="options">
+        <div class="option">
+          <div class="option-info">
+            <h3>JS Physics + JS Render</h3>
+          </div>
+          <a href="src/pages/js-physics-js-render/index.html" class="btn">Test</a>
+        </div>
+
+        <div class="option">
+          <div class="option-info">
+            <h3>WASM Physics + JS Render</h3>
+          </div>
+          <a href="src/pages/wasm-physics-js-render/index.html" class="btn">Test</a>
+        </div>
+
+        <div class="option">
+          <div class="option-info">
+            <h3>⚡⚡JS Physics + WebGl Render</h3>
+          </div>
+          <a href="src/pages/js-physics-webgl-render/index.html" class="btn">Test</a>
+        </div>
+
+        <div class="option">
+          <div class="option-info">
+            <h3>⚡⚡⚡ WASM Physics + WebGl Canvas</h3>
+          </div>
+          <a href="src/pages/wasm-physics-webgl-render/index.html" class="btn">Test</a>
+        </div>
+      </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,8 +1,8 @@
-import { Config } from "./core/config";
-import { PointsAnimation } from "./core/points-animation";
-import { JavaScriptPhysics } from "./core/pure-javascipt/physics";
-import { JavascriptCanvasRenderer } from "./core/pure-javascipt/renderer";
-
+import { PointsAnimation } from '../../core/points-animation';
+import { JavaScriptPhysics } from '../../core/pure-javascipt/physics';
+import { CanvasRenderingType } from '../../core/types';
+import { WebGLCanvasRenderer } from '../../core/webgl/renderer';
+import { Config } from '../../core/config';
 
 function main() {
     const pointsCountInput = document.getElementById(Config.pointsCountInputId) as HTMLInputElement;
@@ -10,11 +10,12 @@ function main() {
     const pointsSizeChangeInput = document.getElementById(Config.pointsSizeInput) as HTMLInputElement;
     const canvasElement = document.getElementById(Config.canvasElementId) as HTMLCanvasElement
     const physicsJavaScriptEngine = new JavaScriptPhysics();
-    const javascriptCanvasRenderer = new JavascriptCanvasRenderer(canvasElement);
+    const webglCanvasRenderer = new WebGLCanvasRenderer(canvasElement);
 
     const pointsAnimation = new PointsAnimation(
         physicsJavaScriptEngine,
-        javascriptCanvasRenderer, 
+        webglCanvasRenderer, 
+        CanvasRenderingType.WebGL,
         canvasElement, 
         pointsCountInput,
         fpsOutput,

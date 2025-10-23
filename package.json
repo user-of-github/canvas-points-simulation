@@ -1,14 +1,22 @@
 {
-  "name": "parcel-vanilla-starter",
+  "name": "points-simulation-canvas-comparison",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1",
   "source": "src/index.html",
+  "author": {
+    "url": "https://github.com/user-of-github",
+    "name": "@user-of-github"
+  },
   "scripts": {
-    "start": "parcel",
-    "build": "parcel build"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "devDependencies": {
-    "@parcel/transformer-glsl": "^2.16.0",
-    "parcel": "^2.14.0"
+    "@types/node": "^24.9.1",
+    "gh-pages": "^6.3.0",
+    "vite": "^7.1.12",
+    "vite-plugin-glsl": "^1.5.4",
+    "vite-plugin-wasm": "^3.5.0"
   }
 }

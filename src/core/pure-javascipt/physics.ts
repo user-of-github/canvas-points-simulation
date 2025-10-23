@@ -1,9 +1,9 @@
 import { resizeF32Array } from '../../utils';
-import { Physics } from './types';
+import { Coordinate, Physics } from '../types';
 
 
 export class JavaScriptPhysics implements Physics {
-    private static readonly Acceleration = 0.01;
+    private static readonly Acceleration = 0.05; // gravity
     private static readonly PI_2 = Math.PI * 2;
      
     /*
@@ -31,19 +31,16 @@ export class JavaScriptPhysics implements Physics {
         }
     }
 
-    public run(startX: number, startY: number): void {
-        console.log(startX, startY)
+    public run({x: startX, y: startY}: Coordinate): void {
         for (let pointer = 0; pointer < this.points.length; pointer += 4) {
             // Filling all array with points in the click place with same coords, but different direction and start speed
             this.points[pointer + 0] = startX; 
             this.points[pointer + 1] = startY;
-            const amplitude = Math.sqrt(Math.random()) * 30;
+            const amplitude = Math.sqrt(Math.random()) * 29; // just suitable constant
             const angle = Math.random() * JavaScriptPhysics.PI_2;
 
             this.points[pointer + 2] = Math.cos(angle) * amplitude; 
             this.points[pointer + 3] = Math.sin(angle) * amplitude;
         }
-        
-        console.log(this.points)
     }
 }
