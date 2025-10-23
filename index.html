@@ -1,29 +1,22 @@
-<!DOCTYPE html><html lang=en><meta charset=utf-8><meta name=viewport content="width=device-width, initial-scale=1.0"><title>WebGL Performance Comparison</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&amp;display=swap" rel=stylesheet><link rel=stylesheet href=points-wasm-webgl.c5662a2d.css><body>
+<html lang=en><base href=/canvas-points-simulation/><meta charset=utf-8><meta name=viewport content="width=device-width, initial-scale=1.0"><title>WebGL Performance Comparison</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&amp;display=swap" rel=stylesheet><link rel=stylesheet href=/canvas-points-simulation/points-wasm-webgl.c5662a2d.css><body>
     <div class=container>
-      <h1>Points Simulation Comparison</h1>
-      <p class=subtitle>Compare performance between JavaScript and WebAssembly</p>
+      <h1>Points Simulation performance comparison</h1>
+      <p class=subtitle></p>
 
       <div class=options>
         <div class=option>
           <div class=option-info>
-            <h3>JavaScript</h3>
-            <p>Pure JS implementation</p>
+            <h3>JavaScript + Canvas 2D API</h3>
           </div>
-          <a href=pages/javascript.html class=btn>Launch</a>
+          <a href=/canvas-points-simulation/pages/javascript.html class=btn>Test</a>
         </div>
 
         <div class=option>
           <div class=option-info>
-            <h3>WebAssembly</h3>
-            <p>High-performance WASM</p>
+            <h3>WebGL + Canvas WebGL API</h3>
           </div>
-          <a href=pages/webgl.html class=btn>Launch</a>
+          <a href=/canvas-points-simulation/pages/webgl.html class=btn>Test</a>
         </div>
-      </div>
-
-      <div class=info>
-        Interactive demo comparing particle simulation performance. 
-        Click to spawn particles and watch the FPS metrics.
       </div>
     </div>
   
